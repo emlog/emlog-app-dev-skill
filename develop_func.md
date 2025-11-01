@@ -1,11 +1,3 @@
----
-title: '系统调用和通用函数'
-sidebar_label: 🔨 系统调用和通用函数
-description: emlog系统调用和通用函数 - 款轻量开源建站系统
-keywords: [emlog, 建站系统, 建站程序, 开源博客系统, php博客系统]
-sidebar_position: 4
----
-
 # 🔨 系统调用和通用函数
 
 应用可以直接使用 emlog 系统内置的类和方法，能够提高开发效率，可以直接用于模板和插件开发的通用方法和函数。

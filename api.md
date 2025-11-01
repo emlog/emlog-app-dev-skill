@@ -1,11 +1,3 @@
----
-title: 'API开发文档'
-sidebar_label: 🚗 API开发文档
-sidebar_position: 1
-description: emlogAPI开发文档 - 款轻量开源建站系统
-keywords: [emlog, 建站系统, 建站程序, 开源博客系统, php博客系统]
----
-
 # 🚗 API开发文档
 
 emlog

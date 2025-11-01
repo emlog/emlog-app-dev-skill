@@ -1,11 +1,3 @@
----
-title: '模板开发指南'
-sidebar_label: 🎨 模板开发指南
-description: emlog模板开发指南 - 款轻量开源建站系统
-keywords: [emlog, 建站系统, 建站程序, 开源博客系统, php博客系统]
-sidebar_position: 3
----
-
 # 🎨 模板开发指南
 
 emlog可以方便的更换模板，模板文件位于 content\templates 目录下，每个模板都是一个单独的文件夹，文件夹以模板的英文别名命名。通过应用商店以及后台上传安装的模板都保存在这个目录下。

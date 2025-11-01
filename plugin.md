@@ -1,11 +1,3 @@
----
-title: '插件开发指南'
-sidebar_label: 🧩 插件开发指南
-description: emlog插件开发指南 - 款轻量开源建站系统
-keywords: [emlog, 建站系统, 建站程序, 开源博客系统, php博客系统]
-sidebar_position: 2
----
-
 # 🧩 插件开发指南
 
 emlog支持插件机制，这样使得开发者可以方便地向系统中添加自己需要的功能。

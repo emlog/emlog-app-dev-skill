@@ -1,75 +1,33 @@
-# EMLOG 应用开发文档
+# EMLOG 应用开发 Skill
 
-emlog支持模板主题和扩展插件，开发者可以开发个性化的模板主题以及功能插件，来丰富emlog站点的功能和样式。
+本项目汇集了 EMLOG 博客系统的应用开发知识库（Skill），旨在辅助 AI 编程工具更好地理解和生成 EMLOG 插件与主题代码。
 
-## 开发环境
+## 包含的 Skill
 
-- PHP7.4及以上
-- MySQL 5.6 及以上版本
-- 浏览器推荐：Chrome
+本项目包含以下两个核心 Skill：
 
-#### 配置开发环境
+1.  **[Emlog 插件开发 Skill](emlog-plugin-dev-skill/SKILL.md)**
+    *   包含插件目录结构、钩子（Hooks）列表、数据库存储操作、常用工具类等开发规范。
+2.  **[Emlog 主题开发 Skill](emlog-theme-dev-skill/SKILL.md)**
+    *   包含主题目录结构、模板文件说明、常用变量与常量、模板标签等开发规范。
 
-- Windows 系统：本地开发集成环境推荐：[phpEnv](https://www.phpenv.cn/)
-- Mac 系统：推荐使用 [docker-compose](/install/install_docker.md) 方式启动开发环境
+## 使用
 
-## 开发规范
+### Trae编辑器
 
-- PHP编码遵循标准：[PSR-1](https://phpfig.p2hp.com/psr/psr-1/) 、[PSR-12](https://phpfig.p2hp.com/psr/psr-12/)
-  （新增代码请遵循该规范，历史代码可以渐进重构）
-- 推荐 PHP 教程：[PHP 之道](https://learnku.com/docs/php-the-right-way/PHP8.0)
-- [更多Web技术教程](https://www.runoob.com/)
+将本项目的 Skill 文件添加到 Trae 编辑器的 Skill 目录中
 
-## 开启开发者模式
+- 插件开发 Skill：/your-project-path/.trae/skills/emlog-plugin-dev-skill
+- 主题开发 Skill：/your-project-path/.trae/skills/emlog-theme-dev-skill
 
-在根目录 config.php 文件末尾追加一行配置，如下：
+### 使用示例
 
-```php
-const ENVIRONMENT = 'develop';
+编辑器会根据提示词自动加载相关 Skill 。
+
+提示词：
 ```
-
-配置后程序将输出更详细的报错信息，包括 warning 和 notice 级别的错误，方便调试完善代码。 请消灭所有 warning 和 notice 报错（大部分是未初始化的变量，或者未判断变量的异常情况引起的）。
-
-## 开发文档
-
-- [模板开发指南](/template.md)
-- [插件开发指南](/plugin.md)
-- [系统调用和通用函数](/develop_func.md)
-- [API 开发文档](/api.md)
-- [应用商店 API](/api_store.md)
-
-## 上架规范
-
-### 通用规范
-
-1. 应用必须适配 PHP7.4 及 8.1 两个版本。
-2. 移植作品请注明原作者，未特别注明的均视为开发者原创，如有侵权行为开发者需要负相关责任。
-3. 应用不得修改核心数据库表及字段，包括向核心表增加字段，更不能添加没有默认值的字段。
-4. 应用关闭或者删除后不得影响站点正常功能。
-5. 开启开发者模式，解决所有 warning 及 notice 报错。
-6. 应用商店模板封面图：尺寸 500x300，禁止包含任何宣传广告文字、边框装饰等，仅内容填充完整的模板预览图即可。
-7. 应用商店插件封面图：尺寸 500x300，禁止直接大字体插件名称、纯色背景、等简单粗暴的封面设计，插件没有合适的封面可以留空、系统会使用默认封面。
-
-### 模板审核规范
-
-1. 模板需要包含模板开发文档中提到的核心插件挂载点，详见:[模板开发文档](./template.md)
-2. 安装包内主题封面（preview.jpg）尺寸： 500x300
-
-### 插件审核规范
-
-1. 插件设置界要和emlog界面风格保持基本一致，无明显页面错乱，进入插件设置界面时左侧插件菜单保持高亮状态。
-2. 插件避免直接操作$_GET和$_POST 数组，采用核心的 Input 类来获取参数，详见：[系统调用和通用函数](./develop_func.md)
-3. 插件避免使用文件来存储插件设置，使用系统提供的 Storage 类来存储插件设置，详见：[插件开发文档](./plugin.md)
-4. 安装包内插件图标（preview.jpg）尺寸： 75x75
-
-## 应用发布
-
-- [发布到应用商店](https://www.emlog.net/my)
-
-## 应用下架
-
-我们鼓励活跃的开发者，不断改进维护自己的应用，也会定期清理一些已经疏于维护的应用。
-
-- 超过2年未更新的收费应用可能会被下架
-- 用户反馈得不到及时回复的收费应用可能会被下架
-- 免费应用不对活跃情况做具体要求，但是如果问题很多不及时解决也可能被下架。
+开发一款emlog插件，实现如下功能：
+1.  xxxxxxx
+2.  xxxxxxx
+3.  xxxxxxx
+```

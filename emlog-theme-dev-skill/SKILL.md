@@ -104,3 +104,7 @@ Emlog 使用原生 PHP 作为模板引擎。
 ## 5. 最佳实践
 
 - PHP 版本适配：代码需兼容 PHP 7.4 及 PHP 8.1
+
+## 参考文档
+
+emlog主题开发文档：./template.md

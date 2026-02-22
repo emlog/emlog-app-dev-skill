@@ -149,4 +149,4 @@ function plugin_setting() {
 
 ## 参考文档
 
-emlog插件开发文档：https://www.emlog.net/docs/dev/plugin
+emlog插件开发文档：./plugin.md

@@ -29,6 +29,72 @@ description: "协助创建和迭代 Emlog 插件。当用户想要创建新插�
   defined('EMLOG_ROOT') || exit('access denied!');
   ```
 
+## 数据存储
+
+使用 `Storage` 类存储键值对配置，禁止使用写文件的方式保存配置。
+
+```php
+$storage = Storage::getInstance('my_plugin');
+
+// 写入 (支持 string, number, boolean, array)
+$storage->setValue('my_key', 'some value');
+$storage->setValue('my_config', ['a' => 1], 'array');
+
+// 读取
+$val = $storage->getValue('my_key');
+
+// 删除
+$storage->deleteName('my_key');
+$storage->deleteAllName('YES'); // 删除该插件所有数据
+```
+
+## 输入输出
+
+### Input
+
+使用 `Input` 类获取 GET/POST 变量，禁止直接访问 `$_GET`/`$_POST` 以防止 SQL 注入。
+
+```php
+// 获取字符串 (默认值为空)
+$str = Input::postStrVar('name', '');
+$str = Input::getStrVar('name', '');
+
+// 获取整数 (默认值为 0)
+$int = Input::postIntVar('id', 0);
+$int = Input::getIntVar('id', 0);
+
+// 获取数组
+$ids = Input::postIntArray('ids'); // 数字数组
+$tags = Input::postStrArray('tags'); // 字符串数组
+
+// 混合获取 (GET/POST/COOKIE)
+$val = Input::requestStrVar('key', 'default');
+```
+
+### Output
+
+使用 `Output` 类返回 JSON 格式数据，确保 API 响应一致，避免使用echo输出json。
+
+```php
+Output::ok(); // 返回成功 JSON
+Output::ok(['id' => 1]); // 返回带数据的成功 JSON
+Output::error('Permission denied'); // 返回错误 JSON
+```
+
+### 常用函数
+
+- `Option::get('att_maxsize')`: 获取系统配置。
+- `Notice::sendMail($to, $title, $content)`: 发送邮件。
+- `subContent($content, 180, 1)`: 截取内容（第3个参数为1时过滤HTML）。
+- `getFirstImage($content)`: 获取内容中的第一张图片 URL。
+- `smartDate($timestamp)`: 返回“1分钟前”等友好时间格式。
+
+## 其他最佳实践
+
+- PHP 版本适配：代码需兼容 PHP 7.4 及 PHP 8.1
+- 生命周期管理：在 `_callback.php` 中实现 `callback_init`（初始化数据）、`callback_rm`（清理数据）。
+- 绿色插件：不要修改系统核心表；卸载时务必清理所有自建数据。
+
 ## 挂载点 (Hooks) 参考
 
 使用 `addAction('hook_name', 'function_name')` 注册钩子。
@@ -58,95 +124,6 @@ description: "协助创建和迭代 Emlog 插件。当用户想要创建新插�
 - doOnceAction (单次接管): 仅执行第一个挂载函数，用于替换系统核心功能（如 `upload_media`）。
 - doMultiAction (轮流接管): 管道式处理，前一个函数的输出作为下一个的输入（如 `article_content_echo`）。
 
-## 数据存储 (Storage)
-
-使用 `Storage` 类存储键值对配置，数据存于数据库。
-
-### 基本用法
-```php
-$storage = Storage::getInstance('my_plugin');
-
-// 写入 (支持 string, number, boolean, array)
-$storage->setValue('my_key', 'some value');
-$storage->setValue('my_config', ['a' => 1], 'array');
-
-// 读取
-$val = $storage->getValue('my_key');
-
-// 删除
-$storage->deleteName('my_key');
-$storage->deleteAllName('YES'); // 删除该插件所有数据
-```
-
-## 常用通用方法和函数
-
-### Input 类 (安全获取输入)
-使用 `Input` 类获取 GET/POST 变量，避免直接访问 `$_GET`/`$_POST` 以防止 SQL 注入。
-
-```php
-// 获取字符串 (默认值为空)
-$str = Input::postStrVar('name', '');
-$str = Input::getStrVar('name', '');
-
-// 获取整数 (默认值为 0)
-$int = Input::postIntVar('id', 0);
-$int = Input::getIntVar('id', 0);
-
-// 获取数组
-$ids = Input::postIntArray('ids'); // 数字数组
-$tags = Input::postStrArray('tags'); // 字符串数组
-
-// 混合获取 (GET/POST/COOKIE)
-$val = Input::requestStrVar('key', 'default');
-```
-
-### Output 类 (标准化输出)
-```php
-Output::ok(); // 返回成功 JSON
-Output::ok(['id' => 1]); // 返回带数据的成功 JSON
-Output::error('Permission denied'); // 返回错误 JSON
-```
-
-### 其他常用函数
-- `Option::get('att_maxsize')`: 获取系统配置。
-- `Notice::sendMail($to, $title, $content)`: 发送邮件。
-- `subContent($content, 180, 1)`: 截取内容（第3个参数为1时过滤HTML）。
-- `getFirstImage($content)`: 获取内容中的第一张图片 URL。
-- `smartDate($timestamp)`: 返回“1分钟前”等友好时间格式。
-
-## 最佳实践
-
-- PHP 版本适配：代码需兼容 PHP 7.4 及 PHP 8.1
-- 生命周期管理：在 `_callback.php` 中实现 `callback_init`（初始化数据）、`callback_rm`（清理数据）。
-- 绿色插件：不要修改系统核心表；卸载时务必清理所有自建数据。
-
-## 常用代码片段
-
-### 注册钩子
-```php
-addAction('index_head', 'my_plugin_css');
-
-function my_plugin_css() {
-    echo '<style>.my-class { color: red; }</style>';
-}
-```
-
-### 创建设置页
-在 `<plugin_name>_setting.php` 中：
-```php
-function plugin_setting_view() {
-    $storage = Storage::getInstance('my_plugin');
-    $val = $storage->getValue('config_key');
-    // 输出 HTML 表单...
-}
-
-function plugin_setting() {
-    // 处理 POST 请求...
-    $storage = Storage::getInstance('my_plugin');
-    $storage->setValue('config_key', $_POST['val']);
-}
-```
-
 ## 参考文档
 
-emlog插件开发文档：./plugin.md
+emlog插件完整开发文档：./plugin.md

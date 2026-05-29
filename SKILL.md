@@ -10,9 +10,9 @@ description: 协助开发 Emlog 应用（包括插件和主题）。当用户想
 ## 目录与文件查找指南
 
 根据用户的开发目标，可以快速查阅以下更详细的参考文档：
-- **系统调用与通用函数**：[develop_func.md](file:///Users/xudawei/webroot/emlog-app-dev-skill/references/develop_func.md) (包含 Input/Output 类、数据存储、支付/AI 对接、用户/积分操作、全局函数等)
-- **插件开发完整规范**：[plugin.md](file:///Users/xudawei/webroot/emlog-app-dev-skill/references/plugin.md) (包含后台配置、钩子机制、数据库操作、回调等)
-- **主题开发完整规范**：[template.md](file:///Users/xudawei/webroot/emlog-app-dev-skill/references/template.md) (包含模板结构、变量列表、常用常量、公共页面调用等)
+- **系统调用与通用函数**：[develop_func.md](./references/develop_func.md) (包含 Input/Output 类、数据存储、支付/AI 对接、用户/积分操作、全局函数等)
+- **插件开发完整规范**：[plugin.md](./references/plugin.md) (包含后台配置、钩子机制、数据库操作、回调等)
+- **主题开发完整规范**：[template.md](./references/template.md) (包含模板结构、变量列表、常用常量、公共页面调用等)
 
 ---
 

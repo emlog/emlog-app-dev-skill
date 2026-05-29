@@ -635,24 +635,3 @@ function content_replace($logData, &$result) {
 }
 addAction('article_content_echo', 'content_replace');
 ```
-
-## 常用方法&函数
-
-可以直接使用的方法和函数：[通用方法和函数](/dev/develop_func.md)
-
-## 参考demo
-
-emlog系统自带的tips插件，也是官方提供的插件演示demo，可以基于该插件进行修改来开发自己的插件。
-tips插件所在目录: content/plugins/tips
-
-## 开源发布
-
-如果你开发的插件在 Github 开源，那请为仓库添加topic： [emlog-plugin](https://github.com/topics/emlog-plugin)
-
-## 发布到应用商店
-
-制作好的插件，经过测试后就可以打包发布到官网的应用商店了。
-
-1. 打包：来到content\plugins 目录下，找到该插件的文件夹，直接使用zip压缩工具打包这个文件夹（注意不要进到文件夹内打包），并将打包后的压缩包命名为
-   ：插件英文别名.zip，如：tips.zip
-2. 发布：登录官网emlog.net - 我的 - 应用开发 - 发布插件，按照提示填写必要的信息即可发布，等待审核。

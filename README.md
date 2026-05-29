@@ -1,10 +1,3 @@
----
-title: 'emlog 应用开发 Agent Skill'
-sidebar_label: 🚴 Agent Skill
-description: 协助AI开发 Emlog 应用（插件、主题）。当用户想要创建新应用、修改现有应用、询问 Emlog 应用开发规范时调用的 Agent Skill。
-keywords: [AI, 大模型, emlog, 应用开发, Agent Skill]
----
-
 # 🚴 emlog 应用开发 Agent Skill
 
 协助AI开发 Emlog 应用（插件、主题）。当用户想要创建新应用、修改现有应用、询问 Emlog 应用开发规范时调用的 Agent Skill。

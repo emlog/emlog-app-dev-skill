@@ -2,10 +2,6 @@
 
 协助AI开发 Emlog 应用（插件、主题）。当用户想要创建新应用、修改现有应用、询问 Emlog 应用开发规范时调用的 Agent Skill。
 
-## Agent Skill
-
-- [gitee：emlog 应用开发 Skill](https://gitee.com/snowsun/emlog-app-dev-skill)
-- [github：emlog 应用开发 Skill](https://github.com/emlog/emlog-app-dev-skill)
 
 ## 使用
 

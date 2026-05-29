@@ -1,0 +1,66 @@
+{
+  "skill_name": "emlog-app-dev",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "开发一个名为 site_status 的 Emlog 插件。功能如下：1. 提供一个后台设置项 status_message（使用 Storage 存储并可在后台修改）。2. 挂载在后台顶部（adm_main_top 钩子），输出这个配置消息。3. 编写生命周期回调（在 callback_init 中初始化数据，在 callback_rm 中清理数据，确保是绿色插件）。4. 安全规范：必须有防直接访问的 defined 检查，函数命名使用 site_status_ 前缀。",
+      "expected_output": "生成的插件目录包含 site_status.php，site_status_callback.php，site_status_setting.php。符合 Emlog 插件命名和安全规范，使用 Storage 管理数据且有完整的激活、卸载清理逻辑。",
+      "files": [],
+      "assertions": [
+        {
+          "name": "Security Check",
+          "type": "llm",
+          "details": "Check if php files contain defined('EMLOG_ROOT') || exit('access denied!');"
+        },
+        {
+          "name": "Naming Convention Check",
+          "type": "llm",
+          "details": "Check if custom functions are prefixed with site_status_"
+        },
+        {
+          "name": "Data Storage Usage",
+          "type": "llm",
+          "details": "Check if Storage::getInstance('site_status') is used to manage status_message"
+        },
+        {
+          "name": "Callback Lifetime Logic",
+          "type": "llm",
+          "details": "Check if callback_init sets config and callback_rm deletes config using deleteAllName('YES')"
+        },
+        {
+          "name": "Hook Registration Check",
+          "type": "llm",
+          "details": "Check if addAction('adm_main_top', ...) is called to register the hook"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "为我的 Emlog 站点开发一个简易的极简主题的 header.php。要求：1. 有合规的模板信息注释（Template Name: 极简主题, Version: 1.0）。2. 有防止直接访问的安全限制。3. 输出站点标题 $site_title。4. 正确引入当前模板目录下的 css/style.css 样式文件。",
+      "expected_output": "包含了合规的主题头部注释，包含 if(!defined('EMLOG_ROOT')) 检查，能正确输出 $site_title 以及使用 TEMPLATE_URL 引入 css/style.css 样式文件。",
+      "files": [],
+      "assertions": [
+        {
+          "name": "Access Security Check",
+          "type": "llm",
+          "details": "Check if code starts with if(!defined('EMLOG_ROOT')) {exit('error!');}"
+        },
+        {
+          "name": "Template Header Comments",
+          "type": "llm",
+          "details": "Check if template contains a header comment with 'Template Name: 极简主题' and 'Version: 1.0'"
+        },
+        {
+          "name": "Site Title Output",
+          "type": "llm",
+          "details": "Check if code outputs $site_title"
+        },
+        {
+          "name": "CSS Asset Loading",
+          "type": "llm",
+          "details": "Check if CSS file is loaded using TEMPLATE_URL"
+        }
+      ]
+    }
+  ]
+}
